@@ -138,19 +138,23 @@
       "minimatch": "11.0.1"
     },
     "@npmcli/map-workspaces": {
-      "minimatch": "11.0.1"
+      "minimatch": "11.0.1",
+      "glob": "14.0.4"
     },
     "eslint": {
       "minimatch": "11.0.1"
     },
     "nyc": {
-      "minimatch": "11.0.1"
+      "minimatch": "11.0.1",
+      "glob": "14.0.4"
     },
     "rimraf": {
-      "minimatch": "11.0.1"
+      "minimatch": "11.0.1",
+      "glob": "14.0.4"
     },
     "test-exclude": {
-      "minimatch": "11.0.1"
+      "minimatch": "11.0.1",
+      "glob": "14.0.4"
     },
     "micromark-extension-math": {
       "katex": "0.18.2"
