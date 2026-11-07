@@ -1,94 +1,28 @@
 {
-  "name": "mocha",
-  "version": "12.0.3",
-  "type": "module",
-  "description": "Classic, reliable, trusted test framework for Node.js and the browser",
-  "keywords": [
-    "mocha",
-    "test",
-    "bdd",
-    "tdd",
-    "tap",
-    "testing",
-    "chai",
-    "assertion",
-    "ava",
-    "jest",
-    "tape",
-    "jasmine",
-    "playwright"
-  ],
   "author": {
     "name": "Mark Wiemer",
     "url": "https://markwiemer.com/software/mocha"
   },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mochajs/mocha.git"
-  },
-  "bugs": {
-    "url": "https://github.com/mochajs/mocha/issues/"
-  },
-  "discord": "https://discord.gg/KeDn2uXhER",
-  "homepage": "https://mochajs.org/",
-  "logo": "https://cldup.com/S9uQ-cOLYz.svg",
-  "notifyLogo": "https://ibin.co/4QuRuGjXvl36.png",
-  "main": "./index.js",
   "bin": {
     "mocha": "./bin/mocha.js"
   },
-  "directories": {
-    "lib": "./lib",
-    "test": "./test"
+  "browser": {
+    "./index.js": "./browser-entry.js",
+    "./lib/cli/index.cjs": false,
+    "./lib/nodejs/buffered-worker-pool.js": false,
+    "./lib/nodejs/esm-utils.cjs": false,
+    "./lib/nodejs/file-unloader.js": false,
+    "./lib/nodejs/parallel-buffered-runner.js": false,
+    "./lib/nodejs/reporters/parallel-buffered.js": false,
+    "./lib/nodejs/serializer.js": false,
+    "./lib/nodejs/worker-core.js": false,
+    "./lib/nodejs/worker.js": false,
+    "fs": false,
+    "path": false,
+    "supports-color": false
   },
-  "engines": {
-    "node": "^20.19.0 || >=22.12.0"
-  },
-  "scripts": {
-    "build": "rollup -c ./rollup.config.js",
-    "clean": "rimraf mocha.js mocha.js.map",
-    "docs": "cd docs; npm run docs",
-    "format:check": "prettier --check .",
-    "format:fix": "prettier --write .",
-    "lint:installed-check": "installed-check --engine-check --ignore-dev",
-    "lint:knip": "knip --cache",
-    "lint:knip-docs": "cd docs && npm run lint:knip",
-    "lint:code": "eslint . --max-warnings 0",
-    "prelint": "npm run clean",
-    "lint": "run-p --aggregate-output --continue-on-error lint:*",
-    "prepublishOnly": "run-s clean build version",
-    "pretest-browser:playwright": "playwright install chromium --with-deps",
-    "test-browser:playwright": "playwright test",
-    "test-browser:webpack-compat": "webpack --mode development --config ./test/browser-specific/fixtures/webpack/webpack.config.cjs",
-    "test-browser": "run-s clean build test-browser:*",
-    "test-coverage-clean": "rimraf .nyc_output coverage",
-    "test-coverage-generate": "nyc report --reporter=lcov --reporter=text",
-    "test-node-run-only": "cross-env NODE_OPTIONS=--enable-source-maps nyc --no-clean --reporter=json node bin/mocha.js --no-forbid-only",
-    "test-node-run": "cross-env NODE_OPTIONS=--enable-source-maps nyc --no-clean --reporter=json node bin/mocha.js --forbid-only",
-    "test-node:integration": "run-s clean build && npm run -s test-node-run -- --parallel --timeout 10000 --slow 3750 \"test/integration/**/*.spec.cjs\"",
-    "test-node:integration:watch": "run-s clean build && npm run -s test-node-run -- --parallel --timeout 10000 --slow 3750 \"test/integration/options/watch.spec.cjs\"",
-    "test-node:interfaces:bdd": "npm run -s test-node-run -- --ui bdd test/interfaces/bdd.spec",
-    "test-node:interfaces:exports": "npm run -s test-node-run -- --ui exports test/interfaces/exports.spec",
-    "test-node:interfaces:qunit": "npm run -s test-node-run -- --ui qunit test/interfaces/qunit.spec",
-    "test-node:interfaces:tdd": "npm run -s test-node-run -- --ui tdd test/interfaces/tdd.spec",
-    "test-node:interfaces": "run-p test-node:interfaces:*",
-    "test-node:jsapi": "node test/jsapi/index.js",
-    "test-node:only:bddRequire": "npm run -s test-node-run-only -- --ui qunit test/only/bdd-require.spec --no-parallel",
-    "test-node:only:globalBdd": "npm run -s test-node-run-only -- --ui bdd test/only/global/bdd.spec --no-parallel",
-    "test-node:only:globalQunit": "npm run -s test-node-run-only -- --ui qunit test/only/global/qunit.spec --no-parallel",
-    "test-node:only:globalTdd": "npm run -s test-node-run-only -- --ui tdd test/only/global/tdd.spec --no-parallel",
-    "test-node:only": "run-p test-node:only:*",
-    "test-node:reporters": "npm run -s test-node-run -- \"test/reporters/*.spec.{cjs,js}\"",
-    "test-node:requires": "npm run -s test-node-run -- --require coffeescript/register --require test/require/a.cjs --require test/require/b.coffee --require test/require/c.cjs --require test/require/d.coffee test/require/require.spec.cjs",
-    "test-node:unit": "npm run -s test-node-run -- \"test/unit/**/*.spec.cjs\" \"test/node-unit/**/*.spec.{cjs,js}\"",
-    "test-node": "run-s test-coverage-clean test-node:* test-coverage-generate",
-    "test-smoke": "node ./bin/mocha.js --no-config test/smoke/smoke.spec.cjs",
-    "test": "run-s lint test-node test-browser",
-    "tsc": "tsc",
-    "version:linkify-changelog": "node scripts/linkify-changelog.js",
-    "version:update-authors": "node scripts/update-authors.cjs",
-    "version": "run-p version:* && git add -A ./AUTHORS ./CHANGELOG.md"
+  "bugs": {
+    "url": "https://github.com/mochajs/mocha/issues/"
   },
   "dependencies": {
     "browser-stdout": "^1.3.1",
@@ -108,6 +42,7 @@
     "supports-color": "^8.1.1",
     "workerpool": "^10.0.0"
   },
+  "description": "Classic, reliable, trusted test framework for Node.js and the browser",
   "devDependencies": {
     "@eslint/js": "^10.0.0",
     "@eslint/markdown": "^8.0.0",
@@ -148,6 +83,14 @@
     "webpack": "^5.67.0",
     "webpack-cli": "^7.0.2"
   },
+  "directories": {
+    "lib": "./lib",
+    "test": "./test"
+  },
+  "discord": "https://discord.gg/KeDn2uXhER",
+  "engines": {
+    "node": "^20.19.0 || \u003e=22.12.0"
+  },
   "files": [
     "bin/*mocha*",
     "lib/**/*.html",
@@ -161,24 +104,82 @@
     "mocha.mjs",
     "browser-entry.js"
   ],
-  "browser": {
-    "./index.js": "./browser-entry.js",
-    "fs": false,
-    "path": false,
-    "supports-color": false,
-    "./lib/nodejs/buffered-worker-pool.js": false,
-    "./lib/nodejs/esm-utils.cjs": false,
-    "./lib/nodejs/file-unloader.js": false,
-    "./lib/nodejs/parallel-buffered-runner.js": false,
-    "./lib/nodejs/serializer.js": false,
-    "./lib/nodejs/worker-core.js": false,
-    "./lib/nodejs/worker.js": false,
-    "./lib/nodejs/reporters/parallel-buffered.js": false,
-    "./lib/cli/index.cjs": false
-  },
+  "homepage": "https://mochajs.org/",
+  "keywords": [
+    "mocha",
+    "test",
+    "bdd",
+    "tdd",
+    "tap",
+    "testing",
+    "chai",
+    "assertion",
+    "ava",
+    "jest",
+    "tape",
+    "jasmine",
+    "playwright"
+  ],
+  "license": "MIT",
+  "logo": "https://cldup.com/S9uQ-cOLYz.svg",
+  "main": "./index.js",
+  "name": "mocha",
+  "notifyLogo": "https://ibin.co/4QuRuGjXvl36.png",
   "overrides": {
     "@types/eslint": "^9.6.1",
     "@types/estree": "^1.0.7",
+    "shell-quote": "1.12.0",
     "webdriverio": "^9.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mochajs/mocha.git"
+  },
+  "scripts": {
+    "build": "rollup -c ./rollup.config.js",
+    "clean": "rimraf mocha.js mocha.js.map",
+    "docs": "cd docs; npm run docs",
+    "format:check": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "lint": "run-p --aggregate-output --continue-on-error lint:*",
+    "lint:code": "eslint . --max-warnings 0",
+    "lint:installed-check": "installed-check --engine-check --ignore-dev",
+    "lint:knip": "knip --cache",
+    "lint:knip-docs": "cd docs \u0026\u0026 npm run lint:knip",
+    "prelint": "npm run clean",
+    "prepublishOnly": "run-s clean build version",
+    "pretest-browser:playwright": "playwright install chromium --with-deps",
+    "test": "run-s lint test-node test-browser",
+    "test-browser": "run-s clean build test-browser:*",
+    "test-browser:playwright": "playwright test",
+    "test-browser:webpack-compat": "webpack --mode development --config ./test/browser-specific/fixtures/webpack/webpack.config.cjs",
+    "test-coverage-clean": "rimraf .nyc_output coverage",
+    "test-coverage-generate": "nyc report --reporter=lcov --reporter=text",
+    "test-node": "run-s test-coverage-clean test-node:* test-coverage-generate",
+    "test-node-run": "cross-env NODE_OPTIONS=--enable-source-maps nyc --no-clean --reporter=json node bin/mocha.js --forbid-only",
+    "test-node-run-only": "cross-env NODE_OPTIONS=--enable-source-maps nyc --no-clean --reporter=json node bin/mocha.js --no-forbid-only",
+    "test-node:integration": "run-s clean build \u0026\u0026 npm run -s test-node-run -- --parallel --timeout 10000 --slow 3750 \"test/integration/**/*.spec.cjs\"",
+    "test-node:integration:watch": "run-s clean build \u0026\u0026 npm run -s test-node-run -- --parallel --timeout 10000 --slow 3750 \"test/integration/options/watch.spec.cjs\"",
+    "test-node:interfaces": "run-p test-node:interfaces:*",
+    "test-node:interfaces:bdd": "npm run -s test-node-run -- --ui bdd test/interfaces/bdd.spec",
+    "test-node:interfaces:exports": "npm run -s test-node-run -- --ui exports test/interfaces/exports.spec",
+    "test-node:interfaces:qunit": "npm run -s test-node-run -- --ui qunit test/interfaces/qunit.spec",
+    "test-node:interfaces:tdd": "npm run -s test-node-run -- --ui tdd test/interfaces/tdd.spec",
+    "test-node:jsapi": "node test/jsapi/index.js",
+    "test-node:only": "run-p test-node:only:*",
+    "test-node:only:bddRequire": "npm run -s test-node-run-only -- --ui qunit test/only/bdd-require.spec --no-parallel",
+    "test-node:only:globalBdd": "npm run -s test-node-run-only -- --ui bdd test/only/global/bdd.spec --no-parallel",
+    "test-node:only:globalQunit": "npm run -s test-node-run-only -- --ui qunit test/only/global/qunit.spec --no-parallel",
+    "test-node:only:globalTdd": "npm run -s test-node-run-only -- --ui tdd test/only/global/tdd.spec --no-parallel",
+    "test-node:reporters": "npm run -s test-node-run -- \"test/reporters/*.spec.{cjs,js}\"",
+    "test-node:requires": "npm run -s test-node-run -- --require coffeescript/register --require test/require/a.cjs --require test/require/b.coffee --require test/require/c.cjs --require test/require/d.coffee test/require/require.spec.cjs",
+    "test-node:unit": "npm run -s test-node-run -- \"test/unit/**/*.spec.cjs\" \"test/node-unit/**/*.spec.{cjs,js}\"",
+    "test-smoke": "node ./bin/mocha.js --no-config test/smoke/smoke.spec.cjs",
+    "tsc": "tsc",
+    "version": "run-p version:* \u0026\u0026 git add -A ./AUTHORS ./CHANGELOG.md",
+    "version:linkify-changelog": "node scripts/linkify-changelog.js",
+    "version:update-authors": "node scripts/update-authors.cjs"
+  },
+  "type": "module",
+  "version": "12.0.3"
 }
