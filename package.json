@@ -128,6 +128,7 @@
   "overrides": {
     "@types/eslint": "^9.6.1",
     "@types/estree": "^1.0.7",
+    "browserslist": "4.29.5",
     "fast-uri": "3.1.9",
     "shell-quote": "1.12.0",
     "webdriverio": "^9.0.0"
