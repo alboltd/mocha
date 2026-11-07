@@ -126,6 +126,7 @@
   "name": "mocha",
   "notifyLogo": "https://ibin.co/4QuRuGjXvl36.png",
   "overrides": {
+    "@humanfs/node": "0.16.8",
     "@types/eslint": "^9.6.1",
     "@types/estree": "^1.0.7",
     "browserslist": "4.29.5",
