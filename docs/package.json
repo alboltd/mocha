@@ -1,22 +1,8 @@
 {
-  "name": "docs",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "astro": "astro",
-    "build": "astro check && astro build",
-    "dev": "astro dev",
-    "docs": "cd .. && npm i && cd docs && npm i && npm run generate && npm run build && cp _redirects dist/_redirects",
-    "generate": "node _data/supporters.cjs --write-supporters-json",
-    "prelint:knip": "npm install",
-    "lint:knip": "knip --cache",
-    "preview": "astro preview",
-    "start": "astro dev"
-  },
   "dependencies": {
     "@astrojs/check": "^0.9.12",
     "@astrojs/starlight": "^0.42.7",
-    "astro": "^7.4.2",
+    "astro": "7.4.12",
     "satteri": "^0.10.5",
     "starlight-blog": "^0.29.0",
     "starlight-package-managers": "^0.12.0",
@@ -25,5 +11,19 @@
   "devDependencies": {
     "debug": "^4.4.3",
     "knip": "^6.0.0"
-  }
+  },
+  "name": "docs",
+  "scripts": {
+    "astro": "astro",
+    "build": "astro check \u0026\u0026 astro build",
+    "dev": "astro dev",
+    "docs": "cd .. \u0026\u0026 npm i \u0026\u0026 cd docs \u0026\u0026 npm i \u0026\u0026 npm run generate \u0026\u0026 npm run build \u0026\u0026 cp _redirects dist/_redirects",
+    "generate": "node _data/supporters.cjs --write-supporters-json",
+    "lint:knip": "knip --cache",
+    "prelint:knip": "npm install",
+    "preview": "astro preview",
+    "start": "astro dev"
+  },
+  "type": "module",
+  "version": "0.0.1"
 }
